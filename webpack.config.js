@@ -3,9 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV == 'production';
 
-const stylesHandler = isProduction
-  ? MiniCssExtractPlugin.loader
-  : 'style-loader';
+const stylesHandler = 'style-loader';
 
 const config = {
   entry: {
@@ -13,6 +11,9 @@ const config = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[hash].bundle.js',
+    chunkFilename: '[name].[hash].chunk.js',
+    publicPath: '/',
   },
   devServer: {
     open: true,
