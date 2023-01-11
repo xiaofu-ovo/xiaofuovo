@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RouterConfig } from './types';
 import routers, { ErrorPage } from './route';
+import Footer from './components/Footer';
+import './styles/global.less';
 
 const getAllRouter = (routers: Array<RouterConfig>, prePath = '') => {
   let allRouter: any[] = [];
@@ -46,4 +48,9 @@ function App() {
 const rootElement = document.getElementById('app');
 const root = createRoot(rootElement);
 
-root.render(<App />);
+root.render(
+  <>
+    <App />
+    <Footer />
+  </>,
+);

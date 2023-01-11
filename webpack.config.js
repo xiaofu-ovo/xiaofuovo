@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { HotModuleReplacementPlugin } = require('webpack');
 
 const isProduction = process.env.NODE_ENV == 'production';
 
@@ -7,23 +8,24 @@ const stylesHandler = 'style-loader';
 
 const config = {
   entry: {
-    '/': './src/index.tsx',
+    '': './src/index.tsx',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[hash].bundle.js',
     chunkFilename: '[name].[hash].chunk.js',
-    publicPath: '/',
   },
   devServer: {
     open: true,
     host: 'localhost',
     historyApiFallback: true,
+    hot: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './template/index.html',
     }),
+    new HotModuleReplacementPlugin(),
   ],
   module: {
     rules: [
@@ -38,15 +40,18 @@ const config = {
       },
       {
         test: /\.less$/i,
-        use: [stylesHandler, 'css-loader', 'postcss-loader', 'less-loader'],
+        use: [stylesHandler, 'css-loader', 'less-loader'],
       },
       {
         test: /\.css$/i,
-        use: [stylesHandler, 'css-loader', 'postcss-loader'],
+        use: [stylesHandler, 'css-loader'],
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif|ico)$/i,
         type: 'asset',
+        generator: {
+          filename: 'assets/[name][ext]',
+        },
       },
     ],
   },

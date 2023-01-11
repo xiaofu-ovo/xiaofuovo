@@ -1,12 +1,11 @@
 import React from 'react';
-import { Spin } from 'antd';
 import Loadable from 'react-loadable';
 import { RouterConfig } from './types';
 
 const loadComponent = (component: () => any) =>
   Loadable({
     loader: component,
-    loading: () => <Spin />,
+    loading: () => <div />,
   });
 
 export const Home = loadComponent(
@@ -19,16 +18,14 @@ export const ErrorPage = loadComponent(
 
 const routers: Array<RouterConfig> = [
   {
-    title: 'homepage',
+    title: 'default',
     path: '/',
     component: Home,
-    children: [
-      {
-        title: 'errorpage',
-        path: '/:id',
-        component: ErrorPage,
-      },
-    ],
+  },
+  {
+    title: 'homepage',
+    path: '/home',
+    component: Home,
   },
 ];
 
