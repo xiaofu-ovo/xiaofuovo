@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ErrorPage, routers, RouterConfig } from './route';
 import { Footer, Header } from '@components/index';
+import "@arco-design/web-react/dist/css/arco.css";
 import './styles/global.less';
 
 const getAllRouter = (routers: Array<RouterConfig>, prePath = '') => {
@@ -51,6 +52,11 @@ root.render(
   <>
     <Header />
     <App />
-    <Footer />
   </>,
 );
+
+const footerElement = document.getElementById('footer')
+const footer = createRoot(footerElement)
+footer.render(
+  <Footer />
+)

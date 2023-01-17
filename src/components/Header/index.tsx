@@ -1,19 +1,27 @@
 import React from 'react';
+import loginIcon from '@/assets/login.svg';
+import aboutIcon from '@/assets/about.svg';
 import './index.less';
 
 interface TitleMap {
-  title: string;
+  title: JSX.Element | string;
   href?: string;
   component?: JSX.Element;
+  icon?: any;
+  iconSize?: number;
 }
 
 const titleMap: TitleMap[] = [
   {
     title: '关于',
+    icon: aboutIcon,
+    iconSize: 20,
     href: '/about',
   },
   {
     title: '登录',
+    icon: loginIcon,
+    iconSize: 16,
     href: '/login',
   },
 ];
@@ -32,16 +40,23 @@ export default function Header() {
       </div>
 
       <div className="right">
-        {titleMap.map(ele => {
-          const { title, component, href } = ele;
+        {titleMap.map((ele, index) => {
+          const { title, component, href, icon, iconSize } = ele;
           if (ele.component) {
             return component;
           } else if (ele.title) {
             return (
               <div
                 className="title"
-                key={title}
+                key={index}
                 onClick={() => (location.href = href)}>
+                {icon && (
+                  <img
+                    src={icon}
+                    className="icon"
+                    style={{ width: `${iconSize}px`, height: `${iconSize}px` }}
+                  />
+                )}
                 {title}
               </div>
             );

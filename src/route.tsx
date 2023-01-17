@@ -12,7 +12,7 @@ const routers: Array<RouterConfig> = [
   {
     title: 'default',
     path: '/',
-    component: Home,
+    component: ErrorPage,
   },
   {
     title: 'homepage',

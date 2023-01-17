@@ -2,7 +2,7 @@
   font-size: 16px;
   font-weight: 500;
   line-height: 20px;
-  padding: 14px 36px;
+  padding: 14px 32px;
   background-image: linear-gradient(135deg, #abdcff 10%, #0396ff 100%);
   box-shadow: 1px 2px 5px #777;
 
@@ -13,8 +13,16 @@
     color: #fff;
     display: flex;
 
+    .icon {
+      width: 18px;
+      height: 18px;
+      margin-right: 4px;
+    }
+
     .title {
       cursor: pointer;
+      display: flex;
+      align-items: center;
     }
 
     .title:not(:last-child) {
