@@ -9,8 +9,18 @@ interface TitleMap {
 
 const titleMap: TitleMap[] = [
   {
-    title: '小浮ovo',
-    component: (
+    title: '关于',
+    href: '/about',
+  },
+  {
+    title: '登录',
+    href: '/login',
+  },
+];
+
+export default function Header() {
+  return (
+    <div className="header">
       <div
         key="myIcon"
         className="myIcon"
@@ -20,40 +30,24 @@ const titleMap: TitleMap[] = [
         <div className="pre">小浮</div>
         <div className="next">ovo</div>
       </div>
-    ),
-  },
-  // {
-  //   title: '首页',
-  // },
-  // {
-  //   title: '博客',
-  // },
-  // {
-  //   title: '攻略',
-  // },
-  {
-    title: '关于',
-  },
-  {
-    title: '登录',
-  },
-];
 
-export default function Header() {
-  return (
-    <div className="header">
-      {titleMap.map(ele => {
-        const { title, component, href } = ele;
-        if (ele.component) {
-          return component;
-        } else if (ele.title) {
-          return (
-            <div className="title" key={title}>
-              {title}
-            </div>
-          );
-        }
-      })}
+      <div className="right">
+        {titleMap.map(ele => {
+          const { title, component, href } = ele;
+          if (ele.component) {
+            return component;
+          } else if (ele.title) {
+            return (
+              <div
+                className="title"
+                key={title}
+                onClick={() => (location.href = href)}>
+                {title}
+              </div>
+            );
+          }
+        })}
+      </div>
     </div>
   );
 }

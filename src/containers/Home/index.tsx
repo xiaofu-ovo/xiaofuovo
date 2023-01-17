@@ -11,8 +11,8 @@ export default function Home() {
   }, []);
   return (
     <div className="home">
-      你吃饱了吗？
-      <img src={img} style={{ width: '100px', height: '100px' }} />
+      {/* 你吃饱了吗？
+      <img src={img} style={{ width: '100px', height: '100px' }} /> */}
     </div>
   );
 }
