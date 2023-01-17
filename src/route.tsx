@@ -1,20 +1,12 @@
-import React from 'react';
-import Loadable from 'react-loadable';
-import { RouterConfig } from './types';
+import Home from './containers/Home';
+import ErrorPage from './containers/ErrorPage';
 
-const loadComponent = (component: () => any) =>
-  Loadable({
-    loader: component,
-    loading: () => <div />,
-  });
-
-export const Home = loadComponent(
-  () => import(/* webpackChunkName: "Home" */ './containers/Home'),
-);
-
-export const ErrorPage = loadComponent(
-  () => import(/* webpackChunkName: "ErrorPage" */ './containers/ErrorPage'),
-);
+interface RouterConfig {
+  title: string;
+  path: string;
+  component: () => JSX.Element;
+  children?: Array<RouterConfig>;
+}
 
 const routers: Array<RouterConfig> = [
   {
@@ -29,4 +21,4 @@ const routers: Array<RouterConfig> = [
   },
 ];
 
-export default routers;
+export { Home, ErrorPage, routers, RouterConfig };

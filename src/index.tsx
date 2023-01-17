@@ -1,9 +1,8 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { RouterConfig } from './types';
-import routers, { ErrorPage } from './route';
-import Footer from './components/Footer';
+import { ErrorPage, routers, RouterConfig } from './route';
+import { Footer, Header } from '@components/index';
 import './styles/global.less';
 
 const getAllRouter = (routers: Array<RouterConfig>, prePath = '') => {
@@ -50,6 +49,7 @@ const root = createRoot(rootElement);
 
 root.render(
   <>
+    <Header />
     <App />
     <Footer />
   </>,
